@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QnA</title>
+  <title>QnA: Mandatara vs Escrow Account</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,57 +25,150 @@
       border-bottom: 2px solid #007bff;
       padding-bottom: 0.5em;
     }
-    pre {
-      background: #f4f4f4;
-      padding: 1.5em;
-      border-radius: 5px;
+    .markdown-content {
+      line-height: 1.7;
+    }
+    .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
+      color: #333;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    .markdown-content h1 {
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 0.3em;
+    }
+    .markdown-content h2 {
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 0.2em;
+    }
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    .markdown-content th, .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.75em;
+      text-align: left;
+    }
+    .markdown-content th {
+      background-color: #f8f9fa;
+      font-weight: bold;
+    }
+    .markdown-content tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+    .markdown-content blockquote {
       border-left: 4px solid #007bff;
-      overflow-x: auto;
+      margin: 1em 0;
+      padding: 0.5em 1em;
+      background-color: #f8f9fa;
+      font-style: italic;
+    }
+    .markdown-content code {
+      background-color: #f4f4f4;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
       font-family: 'Courier New', monospace;
-      white-space: pre-wrap;
-      word-wrap: break-word;
+    }
+    .markdown-content pre {
+      background-color: #f4f4f4;
+      padding: 1em;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .markdown-content ul, .markdown-content ol {
+      padding-left: 2em;
+    }
+    .markdown-content li {
+      margin: 0.5em 0;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>My Markdown Content</h1>
-    <pre>
-# Heading 1
-
-This is a paragraph with **bold text** and *italic text*.
-
-## Heading 2
-
-Here's a list:
-- Item 1
-- Item 2
-- Item 3
-
-### Heading 3
-
-A numbered list:
-1. First item
-2. Second item
-3. Third item
-
-> This is a blockquote
-> that spans multiple lines
-
-`inline code` and a [link to example.com](https://example.com)
-
-```javascript
-// Code block
-function hello() {
-  console.log("Hello, World!");
-}
-```
-
-| Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
-| Cell 1   | Cell 2   | Cell 3   |
-| Cell 4   | Cell 5   | Cell 6   |
-    </pre>
+    <h1>QnA: Mandatara vs Escrow Account</h1>
+    <div id="qna-content" class="markdown-content"></div>
   </div>
-</body>
-</html>
+
+  <script type="text/markdown" id="qna-md">
+Pernyataan yang bagus! Pertanyaan ini menyentuh inti dari usulan reformasi hukum dalam disertasi Anda. Perbedaan esensial antara menciptakan Lembaga Mandatara sebagai entitas hukum independen yang bertugas sebagai *trustee* (wali amanat) dalam Hukum Properti versus sekadar mengadopsi dan menyesuaikan *escrow account* yang sudah dikenal terletak pada **cakupan fungsi, kewajiban hukum fidusia, dan perlindungan kebangkrutan (*bankruptcy remote*) yang ditawarkan.**
+
+Berikut adalah uraian komprehensif mengenai perbedaan esensial tersebut, berdasarkan sumber-sumber yang tersedia:
+
+---
+
+## Perbedaan Esensial: Mandatara (Trustee) vs. Escrow Account Sederhana
+
+### 1. Mandatara: Lembaga dengan Kewajiban Fidusia (Trustee Institution) 🏛️
+
+Mandatara diusulkan bukan sekadar rekening bank, melainkan sebuah **entitas hukum independen** yang berfungsi sebagai wali amanat (*trustee*). Konsep ini merupakan hasil dari **transplantasi hukum interdoktrinal (*interdoctrinal legal transplant*)** dari konsep wali amanat di Pasar Modal ke dalam Hukum Properti.
+
+#### A. Fungsi dan Tanggung Jawab yang Luas
+
+Lembaga Mandatara memiliki tugas dan tanggung jawab yang jauh melampaui fungsi penyimpanan dana sederhana yang dilakukan oleh *escrow agent* atau bank biasa.
+
+| Fungsi Mandatara | Deskripsi dari Sumber |
+| :--- | :--- |
+| **Perwakilan Konsumen (Trustee)** | Mandatara mewakili kepentingan kolektif masyarakat pembeli unit satuan rumah susun. Mandatara memiliki hak untuk mewakili kepentingan pembeli baik di dalam maupun di luar pengadilan. |
+| **Pengelolaan Dana Perwalian** | Mandatara berfungsi sebagai **agen penampungan** (*escrow agent*) dan **agen pembayaran** (*paying agent*) untuk dana konsumen, yang harus dikelola dalam rekening terpisah (*segregated escrow account*). |
+| **Oversight dan Audit** | Mandatara wajib melakukan **uji tuntas (*due diligence*)** secara hukum, keuangan, dan teknis terhadap developer, termasuk meninjau lapangan, menilai jaminan, dan menganalisis kemampuan keuangan developer. |
+| **Transparansi dan Publikasi** | Mandatara memiliki tanggung jawab untuk **mempublikasikan hasil *due diligence* dan prospektus** mengenai kondisi developer dan proyek kepada calon pembeli, memastikan asas publisitas dan transparansi terpenuhi. |
+| ***Fiduciary Duty*** | Sebagai *trustee*, Mandatara mengemban elemen *fiduciary duty, duty of loyalty*, dan *duty of care*—prinsip inti dari lembaga wali amanat—untuk bertindak demi kepentingan terbaik konsumen. |
+
+#### B. Perlindungan Aset dari Kepailitan (*Bankruptcy Remote*)
+
+Perbedaan paling krusial dan esensial adalah **perlindungan terhadap kepailitan developer atau Mandatara itu sendiri**.
+
+*   **Pemisahan Kekayaan:** Harta yang diserahkan oleh pemilik aset (konsumen) kepada Pengelola Dana Perwalian (Mandatara) **bukan merupakan bagian dari kekayaan Mandatara** dan harus dicatat terpisah.
+*   **Perlindungan Dana Konsumen:** Jika Mandatara (yang berwujud Bank Umum atau badan hukum lain) dinyatakan pailit, **semua aset dari pemilik aset (dana konsumen) bukan merupakan bagian dari harta pailit (*boedel pailit*)** dan wajib dikembalikan kepada pemilik aset. Hal ini merupakan poin penting karena melindungi konsumen dari kerugian total jika developer atau lembaga pengelola dana bangkrut.
+
+#### C. Pengawasan Kelembagaan
+
+Mandatara akan diawasi oleh **Otoritas Perumahan** yang diusulkan untuk dibentuk, sesuai dengan amanat UU P2SK Pasal 34 Ayat (5), yang mewajibkan Pengelola Dana Perwalian di sektor lain di luar OJK untuk mendapatkan izin dari otoritas yang membawahi sektor tersebut.
+
+### 2. Escrow Account Sederhana (Rekening Penampungan) 💰
+
+Jika hanya mengadopsi prinsip *escrow account* yang sudah dikenal, perlindungan yang diberikan sangat terbatas dan tidak mencakup kewajiban fidusia yang mendalam.
+
+#### A. Fokus pada Mekanisme Pembayaran
+
+*Escrow account* tradisional adalah rekening yang dipegang oleh pihak ketiga (biasanya bank atau notaris/PPAT pada masa lampau) yang bertindak sebagai *escrow agent*. Fungsi utamanya adalah memastikan dana dicairkan hanya setelah kondisi tertentu (seperti penyelesaian pembangunan pada tahap tertentu) terpenuhi.
+
+#### B. Kekurangan dalam Fungsi Pengawasan dan Representasi
+
+Jika hanya menggunakan *escrow account* sederhana:
+
+*   **Tidak Ada Representasi Kolektif:** Tidak ada entitas yang secara aktif mewakili kepentingan kolektif konsumen (yang jumlahnya bisa ratusan hingga ribuan) dalam proses negosiasi PPJB atau tuntutan hukum. Konsumen tetap berada dalam posisi tawar yang lemah (*ketimpangan posisi hukum*).
+*   **Tidak Ada Kewajiban *Due Diligence*:** Bank atau pihak yang memegang *escrow account* sederhana biasanya tidak memiliki kewajiban hukum untuk melakukan *due diligence* menyeluruh terhadap kelayakan proyek, risiko keuangan developer, atau riwayat utang developer, yang merupakan tugas inti Mandatara.
+*   **Risiko Hukum (Jika Tanpa Transplantasi Doktrin):** Tanpa transplantasi doktrin *trust* (yang mencakup *fiduciary duty* dan *bankruptcy remote* dari UU P2SK), **dana dalam rekening tersebut mungkin tidak terjamin aman dari *boedel pailit*** jika developer jatuh pailit. Hal ini dikarenakan PPJB yang ada saat ini tidak mengatur secara eksplisit mengenai pengawasan penggunaan dana oleh developer.
+
+### Kesimpulan Esensial
+
+Perbedaan esensialnya adalah:
+
+| Fitur Kunci | Mandatara (Trustee Institution) | Escrow Account Sederhana |
+| :--- | :--- | :--- |
+| **Entitas** | **Lembaga hukum independen** yang menjalankan mandat keperantaraan. | Mekanisme pembayaran dan penyimpanan dana yang diatur kontrak. |
+| **Fungsi Inti** | Mewakili **kepentingan kolektif** konsumen, mengelola dana (*agen penampungan/pembayaran*), melakukan *due diligence* dan audit. | Hanya menyimpan dan mencairkan dana sesuai instruksi kontrak. |
+| **Kewajiban Hukum** | Memiliki **kewajiban fidusia** (*fiduciary duty, duty of care, duty of loyalty*). | Kewajiban kontraktual yang terbatas sebagai *agent* atau *custodian*. |
+| **Perlindungan Pailit** | **Aset dana konsumen dijamin *bankruptcy remote*** (tidak masuk *boedel pailit*) Mandatara/Developer, didukung oleh UU P2SK. | Perlindungan seringkali tidak eksplisit dan rentan masuk *boedel pailit* developer. |
+
+Menciptakan Lembaga Mandatara adalah langkah **strategis** yang diperlukan untuk mengisi kekosongan hukum (*rechts vacuum*) dengan memperkenalkan struktur yang kuat dan prinsip-prinsip perlindungan hukum mendalam (seperti *bankruptcy remote*) yang tidak dapat diberikan oleh sekadar penyesuaian pada mekanisme *escrow account* yang ada.
+  </script>
+
+  <script>
+    // Wait for the page to load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the markdown content from the script tag
+      const markdownElement = document.getElementById('qna-md');
+      const markdownText = markdownElement.textContent;
+      
+      // Convert markdown to HTML
+      const htmlContent = marked.parse(markdownText);
+      
+      // Insert the HTML into the content container
+      const contentContainer = document.getElementById('qna-content');
+      contentContainer.innerHTML = htmlContent;
+    });
+  </script>
