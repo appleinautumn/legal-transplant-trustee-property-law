@@ -83,6 +83,49 @@
     .markdown-content li {
       margin: 0.5em 0;
     }
+
+    /* Collapsible styles */
+    .qna-item {
+      margin-bottom: 2em;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .question {
+      background: #f8f9fa;
+      padding: 1.5em;
+      cursor: pointer;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .question:hover {
+      background: #e9ecef;
+    }
+    .question h3 {
+      margin: 0;
+      color: #333;
+      font-size: 1.1em;
+      line-height: 1.4;
+    }
+    .toggle-icon {
+      font-size: 1.2em;
+      color: #007bff;
+    }
+    .answer {
+      display: none;
+      padding: 1.5em;
+    }
+    .answer.expanded {
+      display: block;
+    }
+    .answer-content {
+      line-height: 1.7;
+    }
+    .toggle-icon.expanded {
+      transform: rotate(180deg);
+    }
   </style>
 </head>
 <body>
@@ -135,7 +178,7 @@ Jika hanya mengadopsi prinsip *escrow account* yang sudah dikenal, perlindungan 
 
 #### A. Fokus pada Mekanisme Pembayaran
 
-*Escrow account* tradisional adalah rekening yang dipegang oleh pihak ketiga (biasanya bank atau notaris/PPAT pada masa lampau) yang bertindak sebagai *escrow agent*. Fungsi utamanya adalah memastikan dana dicairkan hanya setelah kondisi tertentu (seperti penyelesaian pembangunan pada tahap tertentu) terpenuhi.
+*Escrow account* tradisional adalah rekening yang dipeheld oleh pihak ketiga (biasanya bank atau notaris/PPAT pada masa lampau) yang bertindak sebagai *escrow agent*. Fungsi utamanya adalah memastikan dana dicairkan hanya setelah kondisi tertentu (seperti penyelesaian pembangunan pada tahap tertentu) terpenuhi.
 
 #### B. Kekurangan dalam Fungsi Pengawasan dan Representasi
 
@@ -157,6 +200,10 @@ Perbedaan esensialnya adalah:
 | **Perlindungan Pailit** | **Aset dana konsumen dijamin *bankruptcy remote*** (tidak masuk *boedel pailit*) Mandatara/Developer, didukung oleh UU P2SK. | Perlindungan seringkali tidak eksplisit dan rentan masuk *boedel pailit* developer. |
 
 Menciptakan Lembaga Mandatara adalah langkah **strategis** yang diperlukan untuk mengisi kekosongan hukum (*rechts vacuum*) dengan memperkenalkan struktur yang kuat dan prinsip-prinsip perlindungan hukum mendalam (seperti *bankruptcy remote*) yang tidak dapat diberikan oleh sekadar penyesuaian pada mekanisme *escrow account* yang ada.
+
+---
+
+> **Kesesuaian Filosofis *Trust* dalam *Civil Law*:** Konsep Wali Amanat (*Trustee*) berasal dari sistem *Common Law*. Meskipun Anda menyebutkan bahwa konsep *trust* telah diterima (misalnya dalam UU P2SK), **bagaimana Anda memastikan bahwa transplantasi doktrin *Fiduciary Duty, Duty of Loyalty*, dan *Duty of Care* tidak akan bertentangan atau menyebabkan ketidakpastian hukum dengan prinsip dasar Hukum Perikatan Indonesia yang berbasis *Civil Law* (terutama asas *Pacta Sunt Servanda*)?**
   </script>
 
   <script>
@@ -169,8 +216,56 @@ Menciptakan Lembaga Mandatara adalah langkah **strategis** yang diperlukan untuk
       // Convert markdown to HTML
       const htmlContent = marked.parse(markdownText);
       
-      // Insert the HTML into the content container
+      // Parse the HTML to create collapsible Q&A items
       const contentContainer = document.getElementById('qna-content');
-      contentContainer.innerHTML = htmlContent;
+      
+      // Find all blockquotes (questions) and their following content
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = htmlContent;
+      
+      const blockquotes = tempDiv.querySelectorAll('blockquote');
+      let finalHTML = '';
+      
+      blockquotes.forEach((blockquote, index) => {
+        const questionText = blockquote.innerHTML;
+        
+        // Get all content between this blockquote and the next one
+        let answerContent = '';
+        let nextElement = blockquote.nextElementSibling;
+        
+        while (nextElement && nextElement.tagName !== 'BLOCKQUOTE') {
+          answerContent += nextElement.outerHTML;
+          nextElement = nextElement.nextElementSibling;
+        }
+        
+        // Create Q&A item
+        finalHTML += `
+          <div class="qna-item">
+            <div class="question" onclick="toggleAnswer(${index})">
+              <h3>${questionText}</h3>
+              <span class="toggle-icon">▼</span>
+            </div>
+            <div class="answer" id="answer-${index}">
+              <div class="answer-content">
+                ${answerContent || '<p><em>Belum ada jawaban untuk pertanyaan ini.</em></p>'}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      contentContainer.innerHTML = finalHTML;
     });
+
+    // Toggle answer visibility
+    function toggleAnswer(index) {
+      const answer = document.getElementById(`answer-${index}`);
+      const toggleIcon = document.querySelector(`#answer-${index}`).previousElementSibling.querySelector('.toggle-icon');
+      
+      answer.classList.toggle('expanded');
+      toggleIcon.classList.toggle('expanded');
+    }
   </script>
+
+</body>
+</html>
